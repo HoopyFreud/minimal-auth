@@ -1,7 +1,11 @@
 <script lang="ts">
-	import { Signup } from "$lib/components/auth/sign-up"
-	import { Signin } from "$lib/components/auth/sign-in"
-	import { Signout } from "$lib/components/auth/sign-out"
+	import { Signup } from "$lib/components/auth/sign-up";
+	import { Signin } from "$lib/components/auth/sign-in";
+	import { Signout } from "$lib/components/auth/sign-out";
+
+	import { authClient } from "$lib/auth-client";
+
+	const session = authClient.useSession(); 
 </script>
 
 <svelte:head>
@@ -15,6 +19,7 @@
 	</h1>
 </section>
 
+{#if $session.data}
 <section>
 	<h2>
 		Sign up here:
@@ -28,14 +33,14 @@
 	</h2>
 	<Signin />
 </section>
-
+{:else}
 <section>
 	<h2>
-		Sign out here:
+		Signed in as {$session.data?.user.displayUsername} <br /> Sign out here:
 	</h2>
 	<Signout />
 </section>
-
+{/if}
 <style>
 	section {
 		display: flex;
