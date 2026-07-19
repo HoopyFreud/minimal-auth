@@ -9,10 +9,16 @@ import { anonymous } from "better-auth/plugins"
 import { username } from "better-auth/plugins"
 
 const authConfig = {
+	session: {
+		cookieCache: {
+			enabled: true,
+			maxAge: 5 * 60, // Cache duration in seconds
+		}
+	},
 	secret: env.BETTER_AUTH_SECRET,
 	emailAndPassword: {
 		enabled: true,
-		minPasswordLength: 0,
+		minPasswordLength: 1,
 		autoSignIn: true,
 	},
 	rateLimit: {
