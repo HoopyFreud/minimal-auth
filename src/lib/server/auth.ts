@@ -5,11 +5,33 @@ import { sveltekitCookies } from "better-auth/svelte-kit";
 import { getRequestEvent } from "$app/server";
 import { getDb } from "$lib/server/db";
 
+import { anonymous } from "better-auth/plugins"
+import { username } from "better-auth/plugins"
+
 const authConfig = {
 	baseURL: env.ORIGIN,
 	secret: env.BETTER_AUTH_SECRET,
-	emailAndPassword: { enabled: true },
+	emailAndPassword: {
+		enabled: true,
+		minPasswordLength: 0,
+		autoSignIn: true,
+	},
+	rateLimit: {
+		enabled: true,
+		window: 10,
+		max: 100,
+		storage: "memory"
+	},
 	plugins: [
+		anonymous({
+			emailDomainName: "example.com"
+		}),
+		username({
+			displayUsernameValidator: (displayUsername) => {
+                // Allow only alphanumeric characters, underscores, and hyphens
+                return /^[a-zA-Z0-9_-]+$/.test(displayUsername)
+            }
+        }),
 		sveltekitCookies(getRequestEvent) // make sure this is the last plugin in the array
 	]
 } satisfies Omit<Parameters<typeof betterAuth>[0], "database">;

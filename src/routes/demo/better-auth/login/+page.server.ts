@@ -16,7 +16,7 @@ export const actions: Actions = {
 		const { auth } = event.locals;
 
 		const formData = await event.request.formData();
-		const email = formData.get('email')?.toString() ?? '';
+		const email = 'email@example.com';
 		const password = formData.get('password')?.toString() ?? '';
 
 		try {
@@ -40,7 +40,7 @@ export const actions: Actions = {
 		const { auth } = event.locals;
 
 		const formData = await event.request.formData();
-		const email = formData.get('email')?.toString() ?? '';
+		const email = 'email@example.com';
 		const password = formData.get('password')?.toString() ?? '';
 		const name = formData.get('name')?.toString() ?? '';
 
