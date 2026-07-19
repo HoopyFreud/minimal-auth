@@ -1,0 +1,14 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "minimal-auth",
+	"compatibility_date": "2026-07-18",
+	"compatibility_flags": [
+		"nodejs_als"
+	],
+	"pages_build_output_dir": ".svelte-kit/cloudflare",
+	"d1_databases": [{
+		"binding": "DB",
+		"database_name": "users",
+		"database_id": "30835aa0-be42-4177-b032-98fca134df95"
+	}]
+}
