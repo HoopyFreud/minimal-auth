@@ -42,7 +42,7 @@ async function handleSignUp () {
   </Card.Header>
   <Card.Content>
     <div class="grid gap-4">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid gap-2">
             <div class="grid gap-2">
             <Label for="user-name">Username</Label>
             <Input id="user-name" placeholder="Username" bind:value={displayUsername} />
