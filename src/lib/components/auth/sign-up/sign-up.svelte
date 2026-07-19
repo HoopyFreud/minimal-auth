@@ -13,7 +13,7 @@ let password = $state('');
 const emailsuffix = '@example.com';
 const name = '';
 
-// Function to handle form submission
+// Function to handle auth async
 async function handleSignUp () {
 	await authClient.signUp.email({
 		email: displayUsername+emailsuffix,
@@ -22,7 +22,7 @@ async function handleSignUp () {
 		username: displayUsername,
 		fetchOptions: {
 			onSuccess() {
-				console.log("Your account has been created.");
+				console.log("Your account has been created");
 			},
 			onError(context) {
 				console.log(context.error.message);

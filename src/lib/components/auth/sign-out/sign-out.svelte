@@ -3,9 +3,18 @@ import { authClient } from "$lib/auth-client";
 import { Button } from "$lib/components/ui/button";
 import * as Card from "$lib/components/ui/card";
 
-// Function to handle form submission
+// Function to handle auth async
 async function handleSignOut () {
-	await authClient.signOut();
+	await authClient.signOut({
+        fetchOptions: {
+			onSuccess() {
+				console.log("You have signed out");
+			},
+			onError(context) {
+				console.log(context.error.message);
+			},
+		},
+    });
 };
 </script>
 

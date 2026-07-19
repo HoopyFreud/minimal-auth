@@ -9,11 +9,19 @@ import { Label } from "$lib/components/ui/label";
 let displayUsername = $state('');
 let password = $state('');
 
-// Function to handle form submission
+// Function to handle auth async
 async function handleSignIn () {
 	await authClient.signIn.username({
 		username: displayUsername,
-		password: password
+		password: password,
+		fetchOptions: {
+			onSuccess() {
+				console.log("You have signed in");
+			},
+			onError(context) {
+				console.log(context.error.message);
+			},
+		},
 	});
 };
 </script>
