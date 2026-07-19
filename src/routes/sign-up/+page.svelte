@@ -11,17 +11,16 @@ let displayUsername = $state('');
 let password = $state('');
 
 // Default fields for unused fields
-const email = 'null@example.com';
+const emailsuffix = 'null@example.com';
 const name = '';
 
 // Function to handle form submission
 async function handleSignUp () {
 	await authClient.signUp.email({
-		email: email,
+		email: displayUsername+emailsuffix,
 		password: password,
         name: name,
 		username: displayUsername,
-		displayUsername: displayUsername,
 		fetchOptions: {
 			onSuccess() {
 				console.log("Your account has been created.");
