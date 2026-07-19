@@ -9,7 +9,6 @@ import { anonymous } from "better-auth/plugins"
 import { username } from "better-auth/plugins"
 
 const authConfig = {
-	baseURL: env.ORIGIN,
 	secret: env.BETTER_AUTH_SECRET,
 	emailAndPassword: {
 		enabled: true,

@@ -22,6 +22,13 @@
 {#if $session.data}
 <section>
 	<h2>
+		Signed in as {$session.data?.user.displayUsername} <br /> Sign out here:
+	</h2>
+	<Signout />
+</section>
+{:else}
+<section>
+	<h2>
 		Sign up here:
 	</h2>
 	<Signup />
@@ -32,13 +39,6 @@
 		Sign in here:
 	</h2>
 	<Signin />
-</section>
-{:else}
-<section>
-	<h2>
-		Signed in as {$session.data?.user.displayUsername} <br /> Sign out here:
-	</h2>
-	<Signout />
 </section>
 {/if}
 <style>
