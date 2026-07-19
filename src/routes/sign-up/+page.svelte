@@ -1,5 +1,4 @@
 <script lang="ts">
-import { goto } from "$app/navigation";
 import { authClient } from "$lib/auth-client";
 import { writable } from "svelte/store";
 import { Button } from "$lib/components/ui/button";
@@ -8,31 +7,27 @@ import { Input } from "$lib/components/ui/input";
 import { Label } from "$lib/components/ui/label";
 
 // Create writable stores for form fields
-const displayUsername = writable("");
-const password = writable("");
+let displayUsername = $state('');
+let password = $state('');
 
 // Default fields for unused fields
 const email = 'null@example.com';
+const name = '';
 
 // Function to handle form submission
-const handleSignUp = async () => {
-	const user = {
-		displayUsername: $displayUsername,
-		password: $password
-	};
+async function handleSignUp () {
 	await authClient.signUp.email({
 		email: email,
-		password: user.password,
-        name: '',
-		displayUsername: user.displayUsername,
-		callbackURL: "/",
+		password: password,
+        name: name,
+		username: displayUsername,
+		displayUsername: displayUsername,
 		fetchOptions: {
 			onSuccess() {
-				alert("Your account has been created.");
-				goto("/");
+				console.log("Your account has been created.");
 			},
 			onError(context) {
-				alert(context.error.message);
+				console.log(context.error.message);
 			},
 		},
 	});
@@ -48,24 +43,19 @@ const handleSignUp = async () => {
   </Card.Header>
   <Card.Content>
     <div class="grid gap-4">
-      <div class="grid grid-cols-2 gap-4">
-        <div class="grid gap-2">
-          <Label for="user-name">Username</Label>
-          <Input
-            id="user-name"
-            placeholder="Username"
-            required
-            bind:value={$displayUsername}
-          />
+        <div class="grid grid-cols-2 gap-4">
+            <div class="grid gap-2">
+            <Label for="user-name">Username</Label>
+            <Input id="user-name" placeholder="Username" bind:value={displayUsername} />
+            </div>
         </div>
-      </div>
-      <div class="grid gap-2">
-        <Label for="password">Password</Label>
-        <Input id="password" type="password" bind:value={$password} />
-      </div>
-      <Button type="button" class="w-full" on:click={handleSignUp}>
-        Create an account
-    </Button>
+        <div class="grid gap-2">
+            <Label for="password">Password</Label>
+            <Input id="password" placeholder="Password" type="password" bind:value={password} />
+        </div>
+        <Button class="w-full" onclick={()=>handleSignUp()}>
+            Create an account
+        </Button>
     </div>
     <div class="mt-4 text-center text-sm">
       Already have an account?
