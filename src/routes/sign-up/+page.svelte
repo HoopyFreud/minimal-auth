@@ -11,7 +11,7 @@ let displayUsername = $state('');
 let password = $state('');
 
 // Default fields for unused fields
-const emailsuffix = 'null@example.com';
+const emailsuffix = '@example.com';
 const name = '';
 
 // Function to handle form submission
