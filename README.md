@@ -1,42 +1,16 @@
-# sv
+This is an example svelte project which uses betterauth to authenticate with a cloudflare d1 database.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+I found that it was extraordinarily frustrating to figure out exactly how to get this thing to build in the cloudflare environment, and by copying me you won't have to suffer.
 
-## Creating a project
+Hopefully this is a useful example of how to add basic authentication components and reactivity to a svelte site, but also, note that successful cloudflare deployment requires, in /src/hooks.server.ts, the follwing:
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
+```
+const handleBetterAuth: Handle = async ({ event, resolve }) => {
+	if (building) {
+		return resolve(event);
+	}
 ```
 
-To recreate this project with the same configuration:
+This is because while building wrangler will throw a shitfit if it sees `event.platform.env.DB`, presumably because it wants to figure out routing and there's nothing to route to. Frankly the Cloudflare docs leave a lot to be desired here, this is mostly conjecture on my end.
 
-```sh
-# recreate this project
-pnpm dlx sv@0.16.3 create --template demo --types ts --add drizzle="database:d1" better-auth="demo:password" --install pnpm minimal-auth
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+I have not tried to build this locally for about 3 days and at this point I'm not sure how I would even try. Best of luck to you.

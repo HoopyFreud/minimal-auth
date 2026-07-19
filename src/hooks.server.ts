@@ -8,9 +8,9 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
 		return resolve(event);
 	}
 	
-	if (!event.platform?.env?.DB) throw new Error('D1 binding "DB" not found - are you running with wrangler?');
+	if (!event.platform?.env?.UserDB) throw new Error('D1 binding "UserDB" not found - are you running with wrangler?');
 
-	event.locals.auth = createAuth(event.platform.env.DB);
+	event.locals.auth = createAuth(event.platform.env.UserDB);
 
 	const { auth } = event.locals;
 	const session = await auth.api.getSession({ headers: event.request.headers });

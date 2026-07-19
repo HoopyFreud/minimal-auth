@@ -6,11 +6,13 @@
 		"nodejs_als"
 	],
 	"pages_build_output_dir": ".svelte-kit/cloudflare",
-	"d1_databases": [{
-		"binding": "DB",
-		"database_name": "users",
-		"database_id": "30835aa0-be42-4177-b032-98fca134df95"
-	}],
+	"d1_databases": [
+		{
+			"binding": "UserDB",
+			"database_name": "users",
+			"database_id": "30835aa0-be42-4177-b032-98fca134df95"
+		}
+	],
 	"vars": {
 		"BETTER_AUTH_URL": "https://min-auth.mechanist.net/"
 	}
