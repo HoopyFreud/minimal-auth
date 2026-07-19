@@ -1,8 +1,8 @@
-This is an example svelte project which uses betterauth to authenticate with a cloudflare d1 database.
+This is an example svelte project which uses betterauth to authenticate using a cloudflare d1 database.
 
 I found that it was extraordinarily frustrating to figure out exactly how to get this thing to build in the cloudflare environment, and by copying me you won't have to suffer.
 
-Hopefully this is a useful example of how to add basic authentication components and reactivity to a svelte site, but also, note that successful cloudflare deployment requires, in /src/hooks.server.ts, the follwing:
+Hopefully this is a useful example of how to add basic authentication components and reactivity to a svelte site, but also, note that successful cloudflare deployment requires, in /src/hooks.server.ts, the following:
 
 ```
 const handleBetterAuth: Handle = async ({ event, resolve }) => {
