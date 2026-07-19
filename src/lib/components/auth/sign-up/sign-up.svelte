@@ -1,6 +1,5 @@
 <script lang="ts">
 import { authClient } from "$lib/auth-client";
-import { writable } from "svelte/store";
 import { Button } from "$lib/components/ui/button";
 import * as Card from "$lib/components/ui/card";
 import { Input } from "$lib/components/ui/input";
@@ -19,7 +18,7 @@ async function handleSignUp () {
 	await authClient.signUp.email({
 		email: displayUsername+emailsuffix,
 		password: password,
-        name: name,
+    name: name,
 		username: displayUsername,
 		fetchOptions: {
 			onSuccess() {
