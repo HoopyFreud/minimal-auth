@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { Signup } from "$lib/components/auth/sign-up"
+</script>
+
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
@@ -5,12 +9,15 @@
 
 <section>
 	<h1>
-		Welcome to your new<br />SvelteKit app
+		This is an ath example
 	</h1>
+</section>
 
+<section>
 	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
+		Sign up here:
 	</h2>
+	<Signup />
 </section>
 
 <style>
