@@ -56,9 +56,5 @@ async function handleSignUp () {
             Create an account
         </Button>
     </div>
-    <div class="mt-4 text-center text-sm">
-      Already have an account?
-      <a href="/sign-in" class="underline"> Sign in </a>
-    </div>
   </Card.Content>
 </Card.Root>
